@@ -1,0 +1,5 @@
+Flask==2.*
+Flask-Cors==3.*
+requests==2.*
+beautifulsoup4==4.*
+gunicorn==21.*
