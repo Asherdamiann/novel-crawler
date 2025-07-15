@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 # Initialize the Flask application
 app = Flask(__name__)
 # Enable CORS to allow your frontend to call this service
-CORS(app)
+CORS(app) 
 
 # Define a route '/crawl' that accepts POST requests
 @app.route('/crawl', methods=['POST'])
@@ -39,9 +39,8 @@ def crawl_novel():
         soup = BeautifulSoup(response.content, 'html.parser')
 
         # --- Extract Data ---
-        # These selectors are specific to kakuyomu.jp's layout.
-        # They might need updating if the site changes.
-        novel_title_element = soup.select_one('#workTitle')
+        # *** FIX: Updated the selector for the novel title to match the current website layout. ***
+        novel_title_element = soup.select_one('#workColorHeader a')
         novel_title = novel_title_element.get_text(strip=True) if novel_title_element else "Unknown Novel Title"
 
         chapter_title_element = soup.select_one('.widget-episodeTitle')
