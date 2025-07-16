@@ -39,7 +39,7 @@ def crawl_novel():
         soup = BeautifulSoup(response.content, 'html.parser')
 
         # --- Extract Data ---
-        # *** FIX: Updated the selector for the novel title to match the current website layout. ***
+        # Updated the selector for the novel title to match the current website layout.
         novel_title_element = soup.select_one('#workColorHeader a')
         novel_title = novel_title_element.get_text(strip=True) if novel_title_element else "Unknown Novel Title"
 
