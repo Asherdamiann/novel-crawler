@@ -31,8 +31,13 @@ def crawl_novel():
         return jsonify({"error": "Invalid URL. Only kakuyomu.jp chapter URLs are supported."}), 400
 
     try:
-        # Fetch the webpage content with a timeout
-        response = requests.get(url, timeout=15)
+        # *** FIX: Add a User-Agent header to mimic a real browser. ***
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+        }
+        
+        # Fetch the webpage content with the header and a timeout
+        response = requests.get(url, headers=headers, timeout=15)
         response.raise_for_status()  # Raise an error for bad responses (like 404)
 
         # Parse the HTML with BeautifulSoup
